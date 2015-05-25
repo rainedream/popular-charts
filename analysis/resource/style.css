@@ -15,7 +15,7 @@ td {
 }
 
 .analysis-table th {
-	background: #F2F2F2;
+	background: #F2F2F2;	
 }
 
 .analysis-table .supported .yes {
@@ -26,4 +26,25 @@ td {
 .analysis-table .supported .no {
 	background: #FF9999;
 	text-transform: capitalize;
+}
+
+.chart-type th {
+	text-decoration: underline;
+}
+
+.sample {
+	background: white;
+	border: solid 1px #AAA;
+	border-radius: 10px;
+	display: none;
+	left: 0;
+	padding: 10px;
+	position: absolute;
+	top: 0;
+}
+
+.sample img {
+	left: 0;
+	position: relative;
+	top: 0;
 }
