@@ -1,0 +1,29 @@
+th, td {
+	border: solid 1px #AAA;
+	padding: 8px 3px;
+}
+
+td {
+	font-family: sans-serif;
+	font-size: 85%;
+	text-align: center;
+}
+
+.analysis-table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.analysis-table th {
+	background: #F2F2F2;
+}
+
+.analysis-table .supported .yes {
+	background: #99FF99;
+	text-transform: capitalize;
+}
+
+.analysis-table .supported .no {
+	background: #FF9999;
+	text-transform: capitalize;
+}
