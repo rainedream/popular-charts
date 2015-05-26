@@ -11,7 +11,7 @@ $(document).ready(function() {
 		img.attr("src", getSampleImage(target));
 
 		var x = target.offset().left + sample.width() < $(window).width() ? target.offset().left : target.offset().left + target.width() - sample.width();
-		var y = target.offset().top + 30;
+		var y = target.offset().top + 50;
 		sample.offset({left:x, top:y});
 		sample.show();
 	};
