@@ -18,12 +18,16 @@ td {
 	background: #F2F2F2;	
 }
 
-.analysis-table .supported .yes {
+.supported {
+	height: 47px;
+}
+
+.supported .yes {
 	background: #99FF99;
 	text-transform: capitalize;
 }
 
-.analysis-table .supported .no {
+.supported .no {
 	background: #FF9999;
 	text-transform: capitalize;
 }
