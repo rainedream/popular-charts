@@ -60,3 +60,19 @@ td {
 	position: relative;
 	top: 0;
 }
+
+.popular-chart-top {
+	border-top: solid 3px #2697CA;
+}
+
+.popular-chart-right {
+	border-right: solid 3px #2697CA;
+}
+
+.popular-chart-bottom {
+	border-bottom: solid 3px #2697CA;
+}
+
+.popular-chart-left {
+	border-left: solid 3px #2697CA;
+}
