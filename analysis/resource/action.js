@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	var popularCharts = ["line", "spline", "stepped", "scatter", "bubble", "area", "spline-area", "stepped-area", "column", "bar", 
-					     "gantt", "logarithmic", "pareto", "pie", "donut", "radar", "gauge", "range"];
+					     "gantt", "logarithmic", "pareto", "pie", "donut", "polar", "radar", "gauge", "range"];
 
 	var standardizeChartName = function(chartName) {
 		return chartName.replace(" ", "_").toLowerCase();
