@@ -9,7 +9,7 @@
 		<p>There are different JavaScript charting frameworks available. Below is a comparison of which features are available in each.</p>
 		<table class="analysis-table">
 			<tr>
-				<th rowspan="2">Framework Name</th>
+				<th rowspan="2" class="framework">Framework Name</th>
 				<th rowspan="2" class="license-type">License Type</th>
 				<th colspan="32">Supported Chart Types</th>
 			</tr>
@@ -57,7 +57,7 @@
 				<td data-chart="bubble" class="no">no</td>
 				<td data-chart="area" class="yes">yes</td>
 				<td data-chart="spline-area" class="yes">yes</td>
-				<td data-chart="stepped-area" class="yes">no</td>
+				<td data-chart="stepped-area" class="no">no</td>
 				<td data-chart="column" class="yes">yes</td>
 				<td data-chart="bar" class="yes">yes</td>
 				<td data-chart="gantt" class="no">no</td>
@@ -93,7 +93,7 @@
 				<td data-chart="bubble" class="no">no</td>
 				<td data-chart="area" class="no">no</td>
 				<td data-chart="spline-area" class="yes">yes</td>
-				<td data-chart="stepped-area" class="yes">no</td>
+				<td data-chart="stepped-area" class="no">no</td>
 				<td data-chart="column" class="yes">yes</td>
 				<td data-chart="bar" class="no">no</td>
 				<td data-chart="gantt" class="no">no</td>
@@ -129,7 +129,7 @@
 				<td data-chart="bubble" class="yes">yes</td>
 				<td data-chart="area" class="yes">yes</td>
 				<td data-chart="spline-area" class="yes">yes</td>
-				<td data-chart="stepped-area" class="yes">no</td>
+				<td data-chart="stepped-area" class="no">no</td>
 				<td data-chart="column" class="yes">yes</td>
 				<td data-chart="bar" class="yes">yes</td>
 				<td data-chart="gantt" class="no">no</td>
@@ -165,7 +165,7 @@
 				<td data-chart="bubble" class="yes">yes</td>
 				<td data-chart="area" class="yes">yes [3D]</td>
 				<td data-chart="spline-area" class="no">no</td>
-				<td data-chart="stepped-area" class="yes">no</td>
+				<td data-chart="stepped-area" class="no">no</td>
 				<td data-chart="column" class="yes">yes</td>
 				<td data-chart="bar" class="yes">yes [3D]</td>
 				<td data-chart="gantt" class="no">no</td>
@@ -517,5 +517,40 @@
 			</tr>
 		</table>
 		<div id="sample" class="sample"><img src="" alt="sample" /></div>
+
+		<table class="obsolete-table">
+			<tr>
+				<th class="framework">Framework Name</th>
+				<th>Why isn't it a candidate to Touch?</th>
+			</tr>
+			<tr>
+				<td><a href="https://github.com/gwatts/jquery.sparkline">jQuery Sparklines</a></td>
+				<td class="unsuitable-reason">Obsolete: The last commit is on Jun 15, 2013.</td>
+			</tr>
+			<tr>
+				<td><a href="https://github.com/tenXer/xcharts">xCharts</a></td>
+				<td class="unsuitable-reason">Obsolete: The last commit is on Aug 9, 2013.</td>
+			</tr>
+			<tr>
+				<td><a href="http://www.jscharts.com">JS Charts</a></td>
+				<td class="unsuitable-reason">Obsolete: The last commit is on Sep 25, 2012.</td>
+			</tr>
+			<tr>
+				<td><a href="https://www.shieldui.com">ShieldUI</a></td>
+				<td class="unsuitable-reason">ShieldUI is a huge gallery that includes various components but not only charts. And chart is only supported limitedly.</td>
+			</tr>
+			<tr>
+				<td><a href="http://www.telerik.com/kendo-ui">Kendo UI</a></td>
+				<td class="unsuitable-reason">Kendo is another huge gallery that includes various components but not only charts.</td>
+			</tr>
+			<tr>
+				<td><a href="http://dev.sencha.com/deploy/touch-charts-beta/examples">Sencha Chart</a></td>
+				<td class="unsuitable-reason">Cannot open.</td>
+			</tr>
+			<tr>
+				<td><a href="http://grafico.kilianvalkhof.com">Grafico</a></td>
+				<td class="unsuitable-reason">Cannot open.</td>
+			</tr>
+		</table>
 	</body>
 </html>

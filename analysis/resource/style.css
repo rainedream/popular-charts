@@ -4,6 +4,7 @@ th, td {
 }
 
 th {
+	background: #F2F2F2;
 	font-size: 11pt;
 }
 
@@ -18,8 +19,8 @@ td {
 	width: 100%;
 }
 
-.analysis-table th {
-	background: #F2F2F2;	
+.analysis-table .framework {
+	width: 92px;
 }
 
 .supported {
@@ -76,3 +77,17 @@ td {
 .popular-chart-left {
 	border-left: solid 3px #2697CA;
 }
+
+.obsolete-table {
+	border-collapse: collapse;
+	margin-top: 30px;
+	width: 60%;
+}
+
+.obsolete-table .framework {
+	width: 130px;
+}
+
+ .unsuitable-reason {
+ 	text-align: left;
+ }
