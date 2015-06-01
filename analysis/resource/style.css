@@ -95,3 +95,8 @@ td {
  .unsuitable-reason {
  	text-align: left;
  }
+
+ .hot-spot {
+ 	color: #DC3912;
+ 	font-weight: bold;
+ }
