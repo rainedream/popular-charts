@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	var popularCharts = ["line", "spline", "stepped", "scatter", "bubble", "area", "spline-area", "stepped-area", "column", "bar", 
 					     "gantt", "logarithmic", "pareto", "pie", "donut", "polar", "radar", "gauge", "range"];
+	var chartColumnStartAt = 3;
 
 	var standardizeChartName = function(chartName) {
 		return chartName.replace(" ", "_").toLowerCase();
@@ -38,8 +39,8 @@ $(document).ready(function() {
 			}
 		});
 
-		minColIndex += 2;
-		maxColIndex += 2;
+		minColIndex += chartColumnStartAt;
+		maxColIndex += chartColumnStartAt;
 
 		return {min: minColIndex, max: maxColIndex};
 	};
@@ -56,7 +57,7 @@ $(document).ready(function() {
 		var charts = $(".supported");
 		charts.each(function(rowIndex, row) {
 			$(row).children().each(function(colIndex, cell) {
-				if (colIndex < 2 || colIndex < minColIndex || colIndex > maxColIndex) {
+				if (colIndex < chartColumnStartAt || colIndex < minColIndex || colIndex > maxColIndex) {
 					return;
 				}
 

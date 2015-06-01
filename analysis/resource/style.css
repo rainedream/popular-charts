@@ -45,6 +45,10 @@ td {
 	width: 80px;
 }
 
+.based-on {
+	width: 60px;
+}
+
 .sample {
 	background: white;
 	border: solid 1px #AAA;
