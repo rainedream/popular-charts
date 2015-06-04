@@ -1,5 +1,31 @@
 (function(fusioncharts) {
-	fusioncharts.renderLine = function(divId) {
+	var colors = ['7CB5EC', '434348', '90ED7D', 'F7A35C'];
+
+	function formatAxisSeries(xAxis) {
+		var axisSeries = new Array();
+		for (var i = 0; i < xAxis.length; i++) {
+			axisSeries.push({'label': xAxis[i]});
+		}
+		return axisSeries;
+	}
+
+	function formatDataSeries(dataSeries) {
+		var series = new Array();
+		for (var i = 0; i < dataSeries.length; i++) {
+			series.push({'seriesname':dataSeries[i].name, 'color':colors[i], 'data':formatData(dataSeries[i].data)});
+		}
+		return series;
+	}
+
+	function formatData(dataArray) {
+		var data = new Array();
+		for (var i = 0; i < dataArray.length; i++) {
+			data.push({'value': dataArray[i]});
+		}
+		return data;
+	}
+
+	fusioncharts.renderLine = function(divId, xAxis, dataSeries) {
 		var revenueChart = new FusionCharts({
 	        "type": "msline",
 	        "renderAt": divId,
@@ -11,7 +37,7 @@
 			        "caption": "Monthly Average Temperature",
 			        "subcaption": "Source: WorldClimate.com",
 			        "xaxisname": "Month",
-			        "yaxisname": "Degree  (in Fahrenheit)",
+			        "yaxisname": "Temperature (°C)",
 			        "palette": "3",
 			        "bgcolor": "FFFFFF",
 			        "canvasbgcolor": "66D6FF",
@@ -26,177 +52,15 @@
 			        "showborder": "0",
 			        "legendborderalpha": "0",
 			        "legendiconscale": "1.5",
-			        "divlineisdashed": "1"
+			        "divlineisdashed": "1",
+			        "animation": "0"
 			    },
 			    "categories": [
 			        {
-			            "category": [
-			                {
-			                    "label": "Jan"
-			                },
-			                {
-			                    "label": "Feb"
-			                },
-			                {
-			                    "label": "Mar"
-			                },
-			                {
-			                    "label": "Apr"
-			                },
-			                {
-			                    "label": "May"
-			                },
-			                {
-			                    "label": "Jun"
-			                },
-			                {
-			                    "label": "Jul"
-			                },
-			                {
-			                    "label": "Aug"
-			                },
-			                {
-			                    "label": "Sep"
-			                },
-			                {
-			                    "label": "Oct"
-			                },
-			                {
-			                    "label": "Nov"
-			                },
-			                {
-			                    "label": "Dec"
-			                }
-			            ]
+			            "category": formatAxisSeries(xAxis)
 			        }
 			    ],
-			    "dataset": [
-			        {
-			            "seriesname": "New York",
-			            "color": "F97D10",
-			            "data": [
-			                {
-			                    "value": "-6"
-			                },
-			                {
-			                    "value": "-15"
-			                },
-			                {
-			                    "value": "3"
-			                },
-			                {
-			                    "value": "12"
-			                },
-			                {
-			                    "value": "32"
-			                },
-			                {
-			                    "value": "44"
-			                },
-			                {
-			                    "value": "52"
-			                },
-			                {
-			                    "value": "50"
-			                },
-			                {
-			                    "value": "39"
-			                },
-			                {
-			                    "value": "28"
-			                },
-			                {
-			                    "value": "5"
-			                },
-			                {
-			                    "value": "-13"
-			                }
-			            ]
-			        },
-			        {
-			            "seriesname": "Chicago",
-			            "data": [
-			                {
-			                    "value": "-27"
-			                },
-			                {
-			                    "value": "-19"
-			                },
-			                {
-			                    "value": "-8"
-			                },
-			                {
-			                    "value": "7"
-			                },
-			                {
-			                    "value": "24"
-			                },
-			                {
-			                    "value": "36"
-			                },
-			                {
-			                    "value": "40"
-			                },
-			                {
-			                    "value": "41"
-			                },
-			                {
-			                    "value": "28"
-			                },
-			                {
-			                    "value": "17"
-			                },
-			                {
-			                    "value": "1"
-			                },
-			                {
-			                    "value": "-25"
-			                }
-			            ]
-			        },
-			        {
-			            "seriesname": "Bismarck",
-			            "color": "3994F9",
-			            "data": [
-			                {
-			                    "value": "-44"
-			                },
-			                {
-			                    "value": "-43"
-			                },
-			                {
-			                    "value": "-31"
-			                },
-			                {
-			                    "value": "-12"
-			                },
-			                {
-			                    "value": "15"
-			                },
-			                {
-			                    "value": "30"
-			                },
-			                {
-			                    "value": "35"
-			                },
-			                {
-			                    "value": "33"
-			                },
-			                {
-			                    "value": "11"
-			                },
-			                {
-			                    "value": "-10"
-			                },
-			                {
-			                    "value": "-30"
-			                },
-			                {
-			                    "value": "-43"
-			                }
-			            ]
-			        }
-			    ],
+			    "dataset": formatDataSeries(dataSeries),
 			    "styles": {
 			        "definition": [
 			            {

@@ -1,16 +1,12 @@
-function runHighCharts(xAxis, dataSeries, rounds) {
+function runCharts(charts, container, xAxis, dataSeries, rounds) {
 	var startTime = Date.now();
 	for (var i = 0; i < rounds; i++) {
-		highcharts.renderLine('highchartsContainer', xAxis, dataSeries);
+		window[charts].renderLine(container, xAxis, dataSeries);
 	}
 	var endTime = Date.now();
 	var timespan = endTime - startTime;
 	
 	return timespan;
-}
-
-function runFusionCharts() {
-	fusioncharts.renderLine('fusionchartsContainer');
 }
 
 
@@ -32,9 +28,10 @@ $(document).ready(function() {
 	            data: temperature.random(years)
 	        }];
 
+	var rounds = 1;
 	var timespanSeries = new Array();
-	timespanSeries.push(runHighCharts(xAxis, dataSeries, 10));
-	runFusionCharts();
+	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', 'highchartsContainer', xAxis, dataSeries, rounds)});
+	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', 'fusionchartsContainer', xAxis, dataSeries, rounds)});
 
 	highcharts.renderPerformaceResult('performanceContainer', timespanSeries);
 });
