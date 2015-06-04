@@ -1,7 +1,7 @@
-function runCharts(chartEngine, container, xAxis, dataSeries, rounds) {
+function runCharts(chartEngine, xAxis, dataSeries, rounds) {
 	var startTime = Date.now();
 	for (var i = 0; i < rounds; i++) {
-		window[chartEngine].renderLine(container, xAxis, dataSeries);
+		window[chartEngine].renderLine(chartEngine + 'Container', xAxis, dataSeries);
 	}
 	var endTime = Date.now();
 	var timespan = endTime - startTime;
@@ -30,9 +30,10 @@ $(document).ready(function() {
 
 	var rounds = 1;
 	var timespanSeries = new Array();
-	// timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', 'highchartsContainer', xAxis, dataSeries, rounds)});
-	// timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', 'fusionchartsContainer', xAxis, dataSeries, rounds)});
-	zingchart.renderLine(xAxis, dataSeries, rounds);
+	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds)});
+	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds)});
+	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds)});
+	zingchart.renderLine('zingchartContainer', xAxis, dataSeries);
 
 	highcharts.renderPerformaceResult('performanceContainer', timespanSeries);
 });
