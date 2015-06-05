@@ -34,6 +34,7 @@ $(document).ready(function() {
 	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds)});
 	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds)});
 	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
+	// koolchart.renderLine('koolchartContainer', xAxis, dataSeries);
 
 	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
 });
