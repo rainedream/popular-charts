@@ -45,7 +45,7 @@ $(document).ready(function() {
 	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'usability':8});
 	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'usability':8});
 	timespanSeries.push({'name':'KoolChart', 'grade':runKoolChart(xAxis, dataSeries, rounds), 'usability':4});
-	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
+	timespanSeries.push({'name':'amCharts', 'grade':runCharts('amcharts', xAxis, dataSeries, rounds), 'usability':6});
 
 	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
 	analyzer.showUX('uxContainer', timespanSeries);
