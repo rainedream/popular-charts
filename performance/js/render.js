@@ -9,6 +9,17 @@ function runCharts(chartEngine, xAxis, dataSeries, rounds) {
 	return timespan;
 }
 
+function runKoolChart(xAxis, dataSeries, rounds) {
+	var startTime = Date.now();
+	for (var i = 0; i < rounds; i++) {
+		renderLineWithKoolChart('koolchartContainer', xAxis, dataSeries);
+	}
+	var endTime = Date.now();
+	var timespan = endTime - startTime;
+	
+	return timespan;
+}
+
 
 $(document).ready(function() {
 	var years = 25;
@@ -30,13 +41,12 @@ $(document).ready(function() {
 
 	var rounds = 1;
 	var timespanSeries = new Array();
-	// timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds), 'ux':9});
-	// timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'ux':8});
-	// timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'ux':8});
-	// koolchart.renderLine('koolchartContainer', xAxis, dataSeries);
-	renderLineWithKoolChart('koolchartContainer', [], dataSeries);
+	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds), 'ux':9});
+	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'ux':8});
+	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'ux':8});
+	timespanSeries.push({'name':'KoolChart', 'grade':runKoolChart(xAxis, dataSeries, rounds), 'ux':4});
 	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
 
-	// analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
-	// analyzer.showUX('uxContainer', timespanSeries);
+	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
+	analyzer.showUX('uxContainer', timespanSeries);
 });
