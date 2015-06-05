@@ -18,7 +18,7 @@
 					+'<series>';
 
 		for (var i = 0; i < dataSeries.length; i++) {
-			var lineLayout = '<Line2DSeries labelPosition="up" yField="Data' + i + '" raidus="4" displayName="' + dataSeries[i].name + '" itemRenderer="CircleItemRenderer">'
+			var lineLayout = '<Line2DSeries id="series' + i + '" labelPosition="up" yField="Data' + i + '" raidus="4" displayName="' + dataSeries[i].name + '" itemRenderer="CircleItemRenderer">'
 								+'<lineStroke>'
 									+'<Stroke color="' + colors[i] + '" weight="3"/>'
 								+'</lineStroke>'
@@ -41,6 +41,15 @@
 						+'<GridLines/>'
 					+'</backgroundElements>'
 				+'</Line2DChart>'
+				+'<Box horizontalAlign="center" width="100%">'
+        			+'<SubLegend useVisibleCheck="true" direction="horizontal" markerHeight="15" markerWidth="15">'
+
+        for (var i = 0; i < dataSeries.length; i++) {
+        	layoutStr += '<CheckableLegendItem targetSeries="{series' + i + '}" fill="' + colors[i] + '" label="' + dataSeries[i].name + '"/>'
+        }
+
+        layoutStr += '</SubLegend>'
+    			+'</Box>'
 			+'</KoolChart>';
 
 		return layoutStr;
