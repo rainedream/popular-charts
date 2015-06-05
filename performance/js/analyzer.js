@@ -66,7 +66,7 @@
 	            width: 800
 	        },
 	        title: {
-	            text: 'User Experience'
+	            text: 'Developer Experience'
 	        },
 	        xAxis: {
 	            categories: extractPartialData(dataSeries, 'name'),
@@ -77,7 +77,7 @@
 	        yAxis: {
 	            min: 0,
 	            title: {
-	                text: 'UX Grade [0 - 10]',
+	                text: 'DX Grade [0 - 10]',
 	                align: 'high'
 	            },
 	            labels: {
@@ -95,8 +95,8 @@
 	            enabled: false
 	        },
 	        series: [{
-	            name: 'User Experience',
-	            data: colorizeBars(extractPartialData(dataSeries, 'ux'))
+	            name: 'Developer Experience',
+	            data: colorizeBars(extractPartialData(dataSeries, 'usability'))
 	        }]
 	    });
 	};
