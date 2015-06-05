@@ -77,7 +77,7 @@
 	        yAxis: {
 	            min: 0,
 	            title: {
-	                text: 'DX Grade [0 - 10]',
+	                text: 'Impression Grade [0 - 10]',
 	                align: 'high'
 	            },
 	            labels: {
