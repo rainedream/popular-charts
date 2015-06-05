@@ -1,4 +1,6 @@
 (function(analyzer) {
+	var colors = ['#FF812D', '#FFD100', '#81D733'];
+
 	function extractPartialData(dataSeries, key) {
 		var array = new Array();
 		for (var i = 0; i < dataSeries.length; i++) {
@@ -6,6 +8,14 @@
 		}
 		return array;
 	};
+
+	function colorizeBars(dataSeries) {
+		var array = new Array();
+		for (var i = 0; i < dataSeries.length; i++) {
+			array.push({'y':dataSeries[i], 'color':colors[i]});
+		}
+		return array;
+	}
 
 	analyzer.showRenderingPerformace = function(divId, dataSeries) {
 		$('#' + divId).highcharts({
@@ -39,23 +49,54 @@
 	                }
 	            }
 	        },
-	        legend: {
-	            layout: 'vertical',
-	            align: 'right',
-	            verticalAlign: 'top',
-	            x: -40,
-	            y: 100,
-	            floating: true,
-	            borderWidth: 1,
-	            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-	            shadow: true
-	        },
 	        credits: {
 	            enabled: false
 	        },
 	        series: [{
 	            name: 'Rendering',
-	            data: extractPartialData(dataSeries, 'grade')
+	            data: colorizeBars(extractPartialData(dataSeries, 'grade'))
+	        }]
+	    });
+	};
+
+	analyzer.showUX = function(divId, dataSeries) {
+		$('#' + divId).highcharts({
+	        chart: {
+	            type: 'bar',
+	            width: 800
+	        },
+	        title: {
+	            text: 'User Experience'
+	        },
+	        xAxis: {
+	            categories: extractPartialData(dataSeries, 'name'),
+	            title: {
+	                text: null
+	            }
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'UX Grade [0 - 10]',
+	                align: 'high'
+	            },
+	            labels: {
+	                overflow: 'justify'
+	            }
+	        },
+	        plotOptions: {
+	            bar: {
+	                dataLabels: {
+	                    enabled: true
+	                }
+	            }
+	        },
+	        credits: {
+	            enabled: false
+	        },
+	        series: [{
+	            name: 'User Experience',
+	            data: colorizeBars(extractPartialData(dataSeries, 'ux'))
 	        }]
 	    });
 	};

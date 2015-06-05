@@ -30,11 +30,12 @@ $(document).ready(function() {
 
 	var rounds = 1;
 	var timespanSeries = new Array();
-	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds)});
+	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds), 'ux':9});
+	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'ux':8});
+	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'ux':8});
 	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
 	// koolchart.renderLine('koolchartContainer', xAxis, dataSeries);
 
 	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
+	analyzer.showUX('uxContainer', timespanSeries);
 });
