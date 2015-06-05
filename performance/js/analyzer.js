@@ -1,5 +1,5 @@
 (function(analyzer) {
-	var colors = ['#FF812D', '#FFD100', '#81D733'];
+	var colors = ['#FF812D', '#FFD100', '#81D733', '#7CB5EC', '#D37EC4'];
 
 	function extractPartialData(dataSeries, key) {
 		var array = new Array();
