@@ -30,12 +30,13 @@ $(document).ready(function() {
 
 	var rounds = 1;
 	var timespanSeries = new Array();
-	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds), 'ux':9});
-	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'ux':8});
-	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'ux':8});
-	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
+	// timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds), 'ux':9});
+	// timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds), 'ux':8});
+	// timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds), 'ux':8});
 	// koolchart.renderLine('koolchartContainer', xAxis, dataSeries);
+	renderLineWithKoolChart('koolchartContainer', [], dataSeries);
+	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
 
-	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
-	analyzer.showUX('uxContainer', timespanSeries);
+	// analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
+	// analyzer.showUX('uxContainer', timespanSeries);
 });

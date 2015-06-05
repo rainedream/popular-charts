@@ -1,38 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<script type="text/javascript" src="../lib/jquery-2.1.4.js"></script>
-		<script type="text/javascript" src="js/random.js"></script>
-		<!-- HighCharts -->
-		<script type="text/javascript" src="../lib/highcharts/highcharts.js"></script>
-		<script type="text/javascript" src="../lib/highcharts/exporting.js"></script>
-		<script type="text/javascript" src="js/highcharts.js"></script>
-		<!-- FusionCharts -->
-		<script type="text/javascript" src="../lib/fusioncharts/fusioncharts.js"></script>
-		<script type="text/javascript" src="../lib/fusioncharts/fusioncharts.theme.fint.js"></script>
-		<script type="text/javascript" src="js/fusioncharts.js"></script>
-		<!-- ZingChart -->
-		<script type="text/javascript" src="../lib/zingchart/zingchart.min.js"></script>
-		<script type="text/javascript" src="js/zingchart.js"></script>
-		<!-- amCharts -->
-		<script type="text/javascript" src="../lib/amcharts/amcharts.js"></script>
-		<script type="text/javascript" src="../lib/amcharts/serial.js"></script>
-		<script type="text/javascript" src="../lib/amcharts/themes/none.js"></script>
-		<script type="text/javascript" src="js/amcharts.js"></script>
-		<!-- KoolChart -->
-		<link rel="stylesheet" href="../lib/koolchart/css/KoolChart.css">
-		<script type="text/javascript" src="../lib/koolchart/KoolChartLicense.js"></script>
-		<script type="text/javascript" src="../lib/koolchart/KoolChart.js"></script>
-		<script type="text/javascript" src="js/koolchart.js"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+		<meta http-equiv="Content-Style-Type" content="text/css"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-		<script type="text/javascript" src="js/analyzer.js"></script>
-		<script type="text/javascript" src="js/render.js"></script>
+		<script src="../lib/jquery-2.1.4.js"></script>
+		<script src="js/random.js"></script>
+
+		<script src="../lib/highcharts/highcharts.js"></script>
+		<script src="../lib/highcharts/exporting.js"></script>
+		<script src="js/highcharts.js"></script>
+
+		<script src="../lib/fusioncharts/fusioncharts.js"></script>
+		<script src="../lib/fusioncharts/fusioncharts.theme.fint.js"></script>
+		<script src="js/fusioncharts.js"></script>
+
+		<script src="../lib/zingchart/zingchart.min.js"></script>
+		<script src="js/zingchart.js"></script>
+
+		<script src="../lib/amcharts/amcharts.js"></script>
+		<script src="../lib/amcharts/serial.js"></script>
+		<script src="../lib/amcharts/themes/none.js"></script>
+		<script src="js/amcharts.js"></script>
+
+		<script src="../lib/koolchart/KoolChartLicense.js"></script>
+		<script src="../lib/koolchart/KoolChart.js"></script>
+		<script src="js/koolchart.js"></script>
+
+		<script src="js/analyzer.js"></script>
+		<script src="js/render.js"></script>
 	</head>
 	<body>
 		<div id="highchartsContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 		<div id="fusionchartsContainer"></div>
 		<div id='zingchartContainer'></div>
-		<!-- <div id="koolchartContainer" style="width:600px; height:400px;"></div> -->
+		<div id="koolchartContainer" style="width:100%; height:400px;"></div>
 		<!-- <div id="amchartsContainer" style="width: 100%; height: 400px;"></div> -->
 		<div id="performanceContainer" style="min-width: 310px; height: 400px; margin: 30px auto 0 auto; float: left"></div>
 		<div id="uxContainer" style="min-width: 310px; height: 400px; margin: 30px auto 0 30px; float: left"></div>
