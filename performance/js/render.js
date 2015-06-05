@@ -35,5 +35,5 @@ $(document).ready(function() {
 	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds)});
 	// amcharts.renderLine('amchartsContainer', xAxis, dataSeries);
 
-	highcharts.renderPerformaceResult('performanceContainer', timespanSeries);
+	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
 });
