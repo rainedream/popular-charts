@@ -31,7 +31,7 @@
 		    },
 			"legend":{
 		        "layout":"x1",
-		        "width":"10%",
+		        "width":"5%",
 		        "margin-top":47,
 		        "border-width":"0",
 		        "shadow":false,
@@ -69,7 +69,7 @@
 		        }
 			},
 		    "plotarea":{
-		        "width":"90%",
+		        "width":"95%",
 		        "height":"96%"
 		    },
 			"series":formatDataSeries(dataSeries)
