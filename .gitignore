@@ -1,0 +1,6 @@
+bin/
+obj/
+DataService/packages
+
+*.suo
+*.csproj.user
