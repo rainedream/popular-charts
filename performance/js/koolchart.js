@@ -18,7 +18,7 @@
 					+'<series>';
 
 		for (var i = 0; i < dataSeries.length; i++) {
-			var lineLayout = '<Line2DSeries id="series' + i + '" labelPosition="up" yField="Data' + i + '" raidus="4" displayName="' + dataSeries[i].name + '" itemRenderer="CircleItemRenderer">'
+			var lineLayout = '<Line2DSeries id="series' + i + '" yField="Data' + i + '" raidus="4" displayName="' + dataSeries[i].name + '" itemRenderer="CircleItemRenderer">'
 								+'<lineStroke>'
 									+'<Stroke color="' + colors[i] + '" weight="3"/>'
 								+'</lineStroke>'
