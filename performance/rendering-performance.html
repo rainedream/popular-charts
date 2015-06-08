@@ -31,12 +31,30 @@
 
 		<script src="js/analyzer.js"></script>
 		<script src="js/render.js"></script>
+
+		<style>
+			.chart-name 
+			{
+				border-top: dashed 1px #555;
+				color: #DC3912;
+				display: block;
+				font-size: 15pt;
+				font-weight: bold;
+				margin-top: 20px;
+				width: 100%;
+			}
+		</style>
 	</head>
 	<body>
+		<label for="highchartsContainer" class="chart-name">HighCharts</label>
 		<div id="highchartsContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		<label for="fusionchartsContainer" class="chart-name">FusionCharts</label>
 		<div id="fusionchartsContainer"></div>
+		<label for="zingchartContainer" class="chart-name">ZingChart</label>
 		<div id='zingchartContainer'></div>
+		<label for="koolchartContainer" class="chart-name">KoolChart</label>
 		<div id="koolchartContainer" style="width:100%; height:400px;"></div>
+		<label for="amchartsContainer" class="chart-name">amCharts</label>
 		<div id="amchartsContainer" style="width: 100%; height: 400px;"></div>
 		<div id="performanceContainer" style="min-width: 310px; height: 400px; margin: 30px auto 0 auto; float: left"></div>
 		<div id="uxContainer" style="min-width: 310px; height: 400px; margin: 30px auto 0 30px; float: left"></div>
