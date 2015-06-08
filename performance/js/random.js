@@ -45,7 +45,7 @@
 (function(SHCOMP) {
 	SHCOMP.IndexGenerator = function() {
 		var baseIndex = 5000;
-		var changeLimitInPercentage = 5;
+		var changeLimitInPercentage = 2;
 		var lastIndex = baseIndex;
 
 		function randomIndex(base) {

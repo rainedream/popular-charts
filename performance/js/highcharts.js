@@ -49,7 +49,7 @@
 
         $('#' + divId).highcharts({
             chart: {
-                type: 'spline',
+                type: 'line',
                 animation: Highcharts.svg, // don't animate in old IE
                 marginRight: 10,
                 events: {
