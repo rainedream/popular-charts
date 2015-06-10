@@ -40,39 +40,3 @@
 		return months;
 	};
 })(window.monthMark = window.monthMark || {});
-
-
-(function(SHCOMP) {
-	SHCOMP.IndexGenerator = function() {
-		var baseIndex = 5000;
-		var changeLimitInPercentage = 2;
-		var lastIndex = baseIndex;
-
-		function randomIndex(base) {
-			var up = Math.random() < 0.5 ? -1 : 1;
-			var change = base * (Math.random() * changeLimitInPercentage / 100); 
-			lastIndex = base + change * up;
-			return lastIndex;
-		}
-
-		this.initData = function() {
-			var data = [],
-	        	time = (new Date()).getTime();
-
-	        for (var i = -19; i <= 0; i += 1) {
-	        	var index = randomIndex(lastIndex);
-	            data.push({x: time + i * 1000, y: index});
-	        }
-	        return data;
-		};
-
-		this.realtime = function(pointArray) {
-			var lastPoint = pointArray.data[pointArray.data.length - 1];
-			setInterval(function () {
-	            var x = (new Date()).getTime(),
-	                y = randomIndex(lastIndex);
-	            pointArray.addPoint([x, y], true, true);
-	        }, 1000);
-		};
-	}
-})(window.SHCOMP = window.SHCOMP || {});

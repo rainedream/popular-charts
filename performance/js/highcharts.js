@@ -40,7 +40,7 @@
 	    });
 	};
 
-	highcharts.renderLineWithRealtimeData = function(divId, initData, appendRealtimeData) {
+	highcharts.renderLineWithRealtimeData = function(divId) {
 		Highcharts.setOptions({
             global: {
                 useUTC: false
