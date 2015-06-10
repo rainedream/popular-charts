@@ -22,7 +22,7 @@ namespace DataService.Controllers
         [Route("multi/{count}")]
         public IList<Index> RandomMultiIndices(double count)
         {
-            DateTime now = DateTime.Now;
+            DateTime now = DateTime.UtcNow;
 
             var indices = new List<Index> {BuildIndex(now.AddSeconds((count - 1) * -1), RandomIndexValue(BaseIndexValue))};
             for (int i = indices.Count; i < count; i++)
@@ -37,12 +37,15 @@ namespace DataService.Controllers
         [Route("last/{lastIndex}")]
         public Index RandomIndex(double lastIndex)
         {
-            return BuildIndex(DateTime.Now, RandomIndexValue(lastIndex));
+            return BuildIndex(DateTime.UtcNow, RandomIndexValue(lastIndex));
         }
 
         private Index BuildIndex(DateTime timestamp, double value)
         {
-            return new Index { Time = timestamp.ToString("HH:mm:ss"), Value = value };
+            var baseTime = new DateTime(1970, 1, 1);
+            TimeSpan timeSpan = timestamp - baseTime;
+
+            return new Index { Time = (long)timeSpan.TotalMilliseconds, Value = value };
         }
 
         private double RandomIndexValue(double lastIndex)
