@@ -102,36 +102,6 @@
         });
 	};
 
-	function receiveLatestDataFromShcomp(pointArray) {
-		setInterval(function () {
-			var lastPoint = pointArray.data[pointArray.data.length - 1];
-
-			$.get("http://localhost:8081/shcomp/last/" + Math.floor(lastPoint.y), function(data) {
-				var x = data['Time'], y = data['Value'];
-				pointArray.addPoint([x, y], true, true);
-			});
-	    }, 1000);		
-	}
-
-	function startToReceiveDataFromShcomp(initDataSeriesCount, renderChart) {
-		$.get("http://localhost:8081/shcomp/multi/" + initDataSeriesCount, function(data) {
-			var coordinates = new Array();
-			$(data).each(function(index, element) {
-				coordinates.push({x:element['Time'], y:element['Value']});
-			});
-
-			renderChart(coordinates);
-		});
-	}
-
-	function extractPartialData(dataSeries, key) {
-		var array = new Array();
-		for (var i = 0; i < dataSeries.length; i++) {
-			array.push(dataSeries[i][key]);
-		}
-		return array;
-	};
-
 	highcharts.renderPerformaceResult = function(divId, dataSeries) {
 		$('#' + divId).highcharts({
 	        chart: {
@@ -183,5 +153,35 @@
 	            data: extractPartialData(dataSeries, 'grade')
 	        }]
 	    });
+	};
+
+	function receiveLatestDataFromShcomp(pointArray) {
+		setInterval(function () {
+			var lastPoint = pointArray.data[pointArray.data.length - 1];
+
+			$.get("http://localhost:8081/shcomp/last/" + Math.floor(lastPoint.y), function(data) {
+				var x = data['Time'], y = data['Value'];
+				pointArray.addPoint([x, y], true, true);
+			});
+	    }, 1000);		
+	}
+
+	function startToReceiveDataFromShcomp(initDataSeriesCount, renderChart) {
+		$.get("http://localhost:8081/shcomp/multi/" + initDataSeriesCount, function(data) {
+			var coordinates = new Array();
+			$(data).each(function(index, element) {
+				coordinates.push({x:element['Time'], y:element['Value']});
+			});
+
+			renderChart(coordinates);
+		});
+	}
+
+	function extractPartialData(dataSeries, key) {
+		var array = new Array();
+		for (var i = 0; i < dataSeries.length; i++) {
+			array.push(dataSeries[i][key]);
+		}
+		return array;
 	};
 })(window.highcharts = window.highcharts || {});
