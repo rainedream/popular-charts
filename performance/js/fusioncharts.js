@@ -1,30 +1,6 @@
 (function(fusioncharts) {
 	var colors = ['7CB5EC', '434348', '90ED7D', 'F7A35C'];
 
-	function formatAxisSeries(xAxis) {
-		var axisSeries = new Array();
-		for (var i = 0; i < xAxis.length; i++) {
-			axisSeries.push({'label': xAxis[i]});
-		}
-		return axisSeries;
-	}
-
-	function formatDataSeries(dataSeries) {
-		var series = new Array();
-		for (var i = 0; i < dataSeries.length; i++) {
-			series.push({'seriesname':dataSeries[i].name, 'color':colors[i], 'data':formatData(dataSeries[i].data)});
-		}
-		return series;
-	}
-
-	function formatData(dataArray) {
-		var data = new Array();
-		for (var i = 0; i < dataArray.length; i++) {
-			data.push({'value': dataArray[i]});
-		}
-		return data;
-	}
-
 	fusioncharts.renderLine = function(divId, xAxis, dataSeries) {
 		var revenueChart = new FusionCharts({
 	        "type": "msline",
@@ -81,4 +57,28 @@
 
 	    revenueChart.render();
 	};
+	
+	function formatAxisSeries(xAxis) {
+		var axisSeries = new Array();
+		for (var i = 0; i < xAxis.length; i++) {
+			axisSeries.push({'label': xAxis[i]});
+		}
+		return axisSeries;
+	}
+
+	function formatDataSeries(dataSeries) {
+		var series = new Array();
+		for (var i = 0; i < dataSeries.length; i++) {
+			series.push({'seriesname':dataSeries[i].name, 'color':colors[i], 'data':formatData(dataSeries[i].data)});
+		}
+		return series;
+	}
+
+	function formatData(dataArray) {
+		var data = new Array();
+		for (var i = 0; i < dataArray.length; i++) {
+			data.push({'value': dataArray[i]});
+		}
+		return data;
+	}
 })(window.fusioncharts = window.fusioncharts || {});
