@@ -130,7 +130,6 @@
 	    // tick.scaleX = toHHMMSS(new Date().getTime());
 	    // tick.plot0 = parseInt(10+900*Math.random(), 10);
 	    var url = 'http://localhost:8081/shcomp';
-	    console.log('latest', latestValue);
 	    if (latestValue > 0) {
 	    	url = 'http://localhost:8081/shcomp/last/' + latestValue;
 	    }
