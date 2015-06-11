@@ -94,105 +94,85 @@
 	var day = 0;
 	var firstDate = new Date();
 	firstDate.setDate(firstDate.getDate() - 500);
+	var latestValue = -1;
 
 	amcharts.renderLineWithRealtimeData = function(divId) {
-		AmCharts.ready(function() {
-		    // generate some data first
-		    generateChartData();
+	    // SERIAL CHART    
+	    chart = new AmCharts.AmSerialChart();
+	    chart.pathToImages = "image/amcharts/";
+	    chart.marginTop = 0;
+	    chart.marginRight = 10;
+	    chart.autoMarginOffset = 5;
+	    chart.zoomOutButton = {
+	        backgroundColor: '#000000',
+	        backgroundAlpha: 0.15
+	    };
+	    chart.dataProvider = chartData;
+	    chart.categoryField = "time";
 
-		    // SERIAL CHART    
-		    chart = new AmCharts.AmSerialChart();
-		    chart.pathToImages = "image/amcharts/";
-		    chart.marginTop = 0;
-		    chart.marginRight = 10;
-		    chart.autoMarginOffset = 5;
-		    chart.zoomOutButton = {
-		        backgroundColor: '#000000',
-		        backgroundAlpha: 0.15
-		    };
-		    chart.dataProvider = chartData;
-		    chart.categoryField = "date";
+	    // AXES
+	    // category
+	    var categoryAxis = chart.categoryAxis;
+	    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
+	    categoryAxis.minPeriod = "ss";
+	    categoryAxis.dataDateFormat = "HH:NN:SS";
+	    categoryAxis.dashLength = 1;
+	    categoryAxis.gridAlpha = 0.15;
+	    categoryAxis.axisColor = "#DADADA";
 
-		    // AXES
-		    // category
-		    var categoryAxis = chart.categoryAxis;
-		    categoryAxis.parseDates = true; // as our data is date-based, we set parseDates to true
-		    categoryAxis.minPeriod = "DD"; // our data is daily, so we set minPeriod to DD
-		    categoryAxis.dashLength = 1;
-		    categoryAxis.gridAlpha = 0.15;
-		    categoryAxis.axisColor = "#DADADA";
+	    // value                
+	    var valueAxis = new AmCharts.ValueAxis();
+	    valueAxis.axisAlpha = 0.2;
+	    valueAxis.dashLength = 1;
+	    chart.addValueAxis(valueAxis);
 
-		    // value                
-		    var valueAxis = new AmCharts.ValueAxis();
-		    valueAxis.axisAlpha = 0.2;
-		    valueAxis.dashLength = 1;
-		    chart.addValueAxis(valueAxis);
+	    // GRAPH
+	    var graph = new AmCharts.AmGraph();
+	    graph.title = "red line";
+	    graph.valueField = "visits";
+	    graph.bullet = "round";
+	    graph.bulletBorderColor = "#FFFFFF";
+	    graph.bulletBorderThickness = 2;
+	    graph.lineThickness = 2;
+	    graph.lineColor = "#b5030d";
+	    graph.negativeLineColor = "#0352b5";
+	    graph.hideBulletsCount = 50; // this makes the chart to hide bullets when there are more than 50 series in selection
+	    chart.addGraph(graph);
 
-		    // GRAPH
-		    var graph = new AmCharts.AmGraph();
-		    graph.title = "red line";
-		    graph.valueField = "visits";
-		    graph.bullet = "round";
-		    graph.bulletBorderColor = "#FFFFFF";
-		    graph.bulletBorderThickness = 2;
-		    graph.lineThickness = 2;
-		    graph.lineColor = "#b5030d";
-		    graph.negativeLineColor = "#0352b5";
-		    graph.hideBulletsCount = 50; // this makes the chart to hide bullets when there are more than 50 series in selection
-		    chart.addGraph(graph);
+	    // CURSOR
+	    chartCursor = new AmCharts.ChartCursor();
+	    chartCursor.cursorPosition = "mouse";
+	    chart.addChartCursor(chartCursor);
 
-		    // CURSOR
-		    chartCursor = new AmCharts.ChartCursor();
-		    chartCursor.cursorPosition = "mouse";
-		    chart.addChartCursor(chartCursor);
+	    // SCROLLBAR
+	    var chartScrollbar = new AmCharts.ChartScrollbar();
+	    chartScrollbar.graph = graph;
+	    chartScrollbar.scrollbarHeight = 40;
+	    chartScrollbar.color = "#FFFFFF";
+	    chartScrollbar.autoGridCount = true;
+	    chart.addChartScrollbar(chartScrollbar);
 
-		    // SCROLLBAR
-		    var chartScrollbar = new AmCharts.ChartScrollbar();
-		    chartScrollbar.graph = graph;
-		    chartScrollbar.scrollbarHeight = 40;
-		    chartScrollbar.color = "#FFFFFF";
-		    chartScrollbar.autoGridCount = true;
-		    chart.addChartScrollbar(chartScrollbar);
-
-		    // WRITE
-		    chart.write(divId);
-		    
-		    // set up the chart to update every second
-		    setInterval(function () {
-		        // normally you would load new datapoints here,
-		        // but we will just generate some random values
-		        // and remove the value from the beginning so that
-		        // we get nice sliding graph feeling
-		        
-		        // remove datapoint from the beginning
-		        chart.dataProvider.shift();
-		        
-		        // add new one at the end
-		        day++;
-		        var newDate = new Date(firstDate);
-		        newDate.setDate(newDate.getDate() + day);
-		        var visits = Math.round(Math.random() * 40) - 20;
-		        chart.dataProvider.push({
-		            date: newDate,
-		            visits: visits
-		        });
-		        chart.validateData();
-		    }, 1000);
-		});
-
+	    // WRITE
+	    chart.write(divId);
+	    
+	    // set up the chart to update every second
+	    setInterval(refreshData, 1000);
 	};
 
-	function generateChartData() {
-	    for (day = 0; day < 50; day++) {
-	        var newDate = new Date(firstDate);
-	        newDate.setDate(newDate.getDate() + day);
+	function refreshData() {
+		var url = 'http://localhost:8081/shcomp';
+		if (latestValue > 0) {
+			url = 'http://localhost:8081/shcomp/last/' + Math.floor(latestValue);
+		}
 
-	        var visits = Math.round(Math.random() * 40) - 20;
-
-	        chartData.push({
-	            date: newDate,
-	            visits: visits
+		$.get(url, function(data) {
+			chart.dataProvider.push({
+	            time: data['Time'],
+	            visits: data['Value']
 	        });
-	    }
+			chart.validateData();
+
+			latestValue = data['Value'];
+		});
 	}
 })(window.amcharts = window.amcharts || {});

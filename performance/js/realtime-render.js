@@ -6,7 +6,6 @@ function renderWithRealtimeData(engines) {
 
 
 $(document).ready(function() {
-	// var engines = ['highcharts', 'zingchart', 'amcharts'];
-	var engines = ['amcharts']
+	var engines = ['highcharts', 'zingchart', 'amcharts'];
 	renderWithRealtimeData(engines);
 });
