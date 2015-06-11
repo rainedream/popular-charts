@@ -6,5 +6,6 @@ function renderWithRealtimeData(engines) {
 
 
 $(document).ready(function() {
-	renderWithRealtimeData(['highcharts']);
+	var engines = ['highcharts', 'zingchart'];
+	renderWithRealtimeData(engines);
 });
