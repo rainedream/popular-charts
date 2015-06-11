@@ -87,7 +87,7 @@
 
 	zingchart.renderLineWithRealtimeData = function(divId, _serviceHost) {
 		serviceHost = _serviceHost;
-		
+
 		var chartData = {
 	        "type":"line",
 	        "background-color":"white",
@@ -129,9 +129,6 @@
 	};
 
 	this.feed = function(callback) {
-	    // var tick = {};
-	    // tick.scaleX = toHHMMSS(new Date().getTime());
-	    // tick.plot0 = parseInt(10+900*Math.random(), 10);
 	    var url = serviceHost + '/shcomp';
 	    if (latestValue > 0) {
 	    	url = serviceHost + '/shcomp/last/' + latestValue;
@@ -143,17 +140,4 @@
 			latestValue = Math.floor(data['Value']);
 		});
 	};
-
-	function toHHMMSS(tick) {
-	    var secNum = tick;
-	    var hours   = Math.floor(secNum / 3600);
-	    var minutes = Math.floor((secNum - (hours * 3600)) / 60);
-	    var seconds = secNum - (hours * 3600) - (minutes * 60);
-
-	    if (hours   < 10) {hours   = "0"+hours;}
-	    if (minutes < 10) {minutes = "0"+minutes;}
-	    if (seconds < 10) {seconds = "0"+seconds;}
-	    
-	    return hours + ':' + minutes + ':' + seconds;
-	}
 })(window.zingchart = window.zingchart || {});
