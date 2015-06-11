@@ -96,7 +96,7 @@
 	firstDate.setDate(firstDate.getDate() - 500);
 	var latestValue = -1;
 
-	amcharts.renderLineWithRealtimeData = function(divId) {
+	amcharts.renderLineWithRealtimeData = function(divId, serviceHost) {
 	    // SERIAL CHART    
 	    chart = new AmCharts.AmSerialChart();
 	    chart.pathToImages = "image/amcharts/";
@@ -156,13 +156,13 @@
 	    chart.write(divId);
 	    
 	    // set up the chart to update every second
-	    setInterval(refreshData, 1000);
+	    setInterval(function() { refreshData(serviceHost); }, 1000);
 	};
 
-	function refreshData() {
-		var url = 'http://localhost:8081/shcomp';
+	function refreshData(serviceHost) {
+		var url = serviceHost + '/shcomp';
 		if (latestValue > 0) {
-			url = 'http://localhost:8081/shcomp/last/' + Math.floor(latestValue);
+			url = serviceHost + '/shcomp/last/' + Math.floor(latestValue);
 		}
 
 		$.get(url, function(data) {

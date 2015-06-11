@@ -1,6 +1,7 @@
 (function(zingchart) {
 	var colors = ['#7CB5EC', '#434348', '#90ED7D', '#F7A35C'];
 	var latestValue = -1;
+	var serviceHost = '';
 
 	function formatDataSeries(dataSeries) {
 		var series = new Array();
@@ -84,7 +85,9 @@
 		});
 	};
 
-	zingchart.renderLineWithRealtimeData = function(divId) {
+	zingchart.renderLineWithRealtimeData = function(divId, _serviceHost) {
+		serviceHost = _serviceHost;
+		
 		var chartData = {
 	        "type":"line",
 	        "background-color":"white",
@@ -129,9 +132,9 @@
 	    // var tick = {};
 	    // tick.scaleX = toHHMMSS(new Date().getTime());
 	    // tick.plot0 = parseInt(10+900*Math.random(), 10);
-	    var url = 'http://localhost:8081/shcomp';
+	    var url = serviceHost + '/shcomp';
 	    if (latestValue > 0) {
-	    	url = 'http://localhost:8081/shcomp/last/' + latestValue;
+	    	url = serviceHost + '/shcomp/last/' + latestValue;
 	    }
 
 	    $.get(url, function(data) {

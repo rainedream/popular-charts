@@ -40,7 +40,7 @@
 	    });
 	};
 
-	highcharts.renderLineWithRealtimeData = function(divId) {
+	highcharts.renderLineWithRealtimeData = function(divId, serviceHost) {
 		Highcharts.setOptions({
             global: {
                 useUTC: false
@@ -56,7 +56,7 @@
                     load: function () {
                         // set up the updating of the chart each second
                         var series = this.series[0];
-                        receiveLatestDataFromShcomp(series);
+                        receiveLatestDataFromShcomp(serviceHost, series);
                     }
                 }
             },
@@ -96,7 +96,7 @@
             }]
         };
 
-        startToReceiveDataFromShcomp(20, function(dataSeries){
+        startToReceiveDataFromShcomp(serviceHost, 20, function(dataSeries){
         	settings.series[0]['data'] = dataSeries;
 			$('#' + divId).highcharts(settings);
         });
@@ -155,19 +155,19 @@
 	    });
 	};
 
-	function receiveLatestDataFromShcomp(pointArray) {
+	function receiveLatestDataFromShcomp(serviceHost, pointArray) {
 		setInterval(function () {
 			var lastPoint = pointArray.data[pointArray.data.length - 1];
 
-			$.get("http://localhost:8081/shcomp/last/" + Math.floor(lastPoint.y), function(data) {
+			$.get(serviceHost + "/shcomp/last/" + Math.floor(lastPoint.y), function(data) {
 				var x = data['Time'], y = data['Value'];
 				pointArray.addPoint([x, y], true, true);
 			});
 	    }, 1000);		
 	}
 
-	function startToReceiveDataFromShcomp(initDataSeriesCount, renderChart) {
-		$.get("http://localhost:8081/shcomp/multi/" + initDataSeriesCount, function(data) {
+	function startToReceiveDataFromShcomp(serviceHost, initDataSeriesCount, renderChart) {
+		$.get(serviceHost + "/shcomp/multi/" + initDataSeriesCount, function(data) {
 			var coordinates = new Array();
 			$(data).each(function(index, element) {
 				coordinates.push({x:element['Time'], y:element['Value']});
