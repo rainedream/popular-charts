@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta http-equiv="Content-Script-Type" content="text/javascript"/>
+		<meta http-equiv="Content-Style-Type" content="text/css"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+		<script src="../lib/jquery-2.1.4.js"></script>
+
+		<script src="../lib/highcharts/highcharts.js"></script>
+		<script src="../lib/highcharts/exporting.js"></script>
+
+		<script src="js/analyzer.js"></script>
+		</style>
+	</head>
+	<body>
+		<div id="uxContainer" style="min-width: 310px; height: 400px; margin: 30px auto 0 30px; float: left"></div>
+
+		<script>
+			var uxSeries = new Array();
+			uxSeries.push({'name':'HighCharts', 'usability':9});
+			uxSeries.push({'name':'FusionCharts', 'usability':8});
+			uxSeries.push({'name':'ZingChart', 'usability':8});
+			uxSeries.push({'name':'KoolChart', 'usability':4});
+			uxSeries.push({'name':'amCharts', 'usability':6});
+
+			analyzer.showUX('uxContainer', uxSeries);
+		</script>
+	</body>
+</html>
