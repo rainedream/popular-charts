@@ -94,10 +94,14 @@
 	        credits: {
 	            enabled: false
 	        },
-	        series: [{
-	            name: 'Developer Experience',
-	            data: colorizeBars(extractPartialData(dataSeries, 'usability'))
-	        }]
+	        series: [
+	        	{
+	            	name: 'Basic Development Experience',
+	            	data: extractPartialData(dataSeries, 'basic-ux')
+	        	}, {
+	        		name: 'Realtime Refresh Development Experience',
+	        		data: extractPartialData(dataSeries, 'real-ux')
+	        	}]
 	    });
 	};
 })(window.analyzer = window.analyzer || {});
