@@ -40,12 +40,9 @@ $(document).ready(function() {
 	        }];
 
 	var rounds = 1;
-	var timespanSeries = new Array();
-	timespanSeries.push({'name':'HighCharts', 'grade':runCharts('highcharts', xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'FusionCharts', 'grade':runCharts('fusioncharts', xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'ZingChart', 'grade':runCharts('zingchart', xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'KoolChart', 'grade':runKoolChart(xAxis, dataSeries, rounds)});
-	timespanSeries.push({'name':'amCharts', 'grade':runCharts('amcharts', xAxis, dataSeries, rounds)});
-
-	analyzer.showRenderingPerformace('performanceContainer', timespanSeries);
+	runCharts('highcharts', xAxis, dataSeries, rounds);
+	runCharts('fusioncharts', xAxis, dataSeries, rounds);
+    runCharts('zingchart', xAxis, dataSeries, rounds);
+    runKoolChart(xAxis, dataSeries, rounds);
+    runCharts('amcharts', xAxis, dataSeries, rounds);
 });
