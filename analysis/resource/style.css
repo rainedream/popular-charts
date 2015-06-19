@@ -113,3 +113,8 @@ td {
  .compatible-with-vt .hit {
  	background: url(image/hit.png) no-repeat center center;
  }
+
+ .note {
+ 	font-weight: bold;
+ 	margin-top: 20px;
+ }
