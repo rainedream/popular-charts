@@ -111,10 +111,13 @@
 		        },
 		        "toggle-action":"remove"
 		    },
-			"scaleX":{
+			"scale-x":{
 		        "values":xAxis
 			},
-			"scaleY":{
+			"scale-x-2":{
+		        "values":xAxis
+			},
+			"scale-y":{
 		        "line-color":"#333"
 			},
 			"crosshair-x": {
@@ -153,7 +156,8 @@
 			},
 		    "plotarea":{
 		        "width":"95%",
-		        "height":"96%"
+		        "height":"96%",
+		        "margin-top": 110
 		    },
 			"series":formatDataSeries(dataSeries)
 		};
