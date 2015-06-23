@@ -11,8 +11,6 @@
 		<script src="../lib/zingchart/zingchart.min.js"></script>
 		<script src="js/zingchart.js"></script>
 
-		<script src="js/render.js"></script>
-
 		<style>
 			.chart-name 
 			{
@@ -29,5 +27,11 @@
 	<body>
 		<label for="zingchartContainer" class="chart-name">ZingChart</label>
 		<div id='zingchartContainer'></div>
-	</body>
+
+		<script>
+			$(document).ready(function() {
+				zingchart.renderMultiYAxises('zingchartContainer');
+			});
+		</script>
+	</body>	
 </html>
