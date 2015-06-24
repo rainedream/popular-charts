@@ -5,8 +5,10 @@
 		<meta http-equiv="Content-Script-Type" content="text/javascript"/>
 		<meta http-equiv="Content-Style-Type" content="text/css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>ZingChart Extension</title>
 
 		<script src="../lib/jquery-2.1.4.js"></script>
+		<script src="../lib/jquery-ui-1.11.4.js"></script>
 		<script src="js/random.js"></script>
 
 		<script src="../lib/zingchart/zingchart.min.js"></script>
@@ -23,16 +25,68 @@
 				margin-top: 20px;
 				width: 100%;
 			}
+			#zingchartContainer 
+			{
+				margin-bottom: -157px;
+			}
+
+			#zingchartContainerScope 
+			{
+				margin-top: -75px;
+			}
+
+			#zingchartContainerScopeMask
+			{
+				height: 92px;
+				margin: -129px 0 0 49px;
+				width: 1713px;
+			}
+
+			.data-scope-mask
+			{
+				background: rgba(242, 242, 242, 0.5);
+				border: dashed 1px #e1e1e1;
+				height: 100%;
+				width: 100%;
+			}
+			
+			.mask-button 
+			{
+				background: url(image/dragIconRoundBig.png) no-repeat;
+				cursor: e-resize;
+				display: inline-block;
+				height: 35px;
+				margin-top: 28px;
+				position: relative;
+				width: 35px;
+			}
+
+			#zingchartContainerScopeMask .left 
+			{
+				float: left;
+				margin-left: -17px;
+			}
+
+			#zingchartContainerScopeMask .right
+			{
+				float: right;
+				margin-right: -17px;
+			}
 		</style>
 	</head>
 	<body>
-		<label for="zingchartContainer" class="chart-name">ZingChart</label>
+		<label for="zingchartContainer" class="chart-name">ZingChart Extension: Data Range Selection (Hybrid)</label>
 		<div id='zingchartContainer'></div>
+		<div id='zingchartContainerScope'></div>
+		<div id='zingchartContainerScopeMask'>
+			<div class='mask-button left'></div>
+			<div class='mask-button right'></div>
+			<div class="data-scope-mask"></div>
+		</div>
 
 		<script>
 			$(document).ready(function() {
 				var years = 25;
-				var xAxis = monthMark.generate(2014, years);
 				var dataSeries = [
 						{
 				            name: 'Tokyo',
@@ -48,7 +102,7 @@
 				            data: temperature.random(years)
 				        }];
 
-				zingchart.renderLine('zingchartContainer', xAxis, dataSeries);
+				zingchart.renderLineWithinScope('zingchartContainer', dataSeries);
 			});
 		</script>
 	</body>

@@ -17,6 +17,23 @@
 		return series;
 	}
 
+	function formatDataSeriesInScope(dataSeries) {
+		var series = new Array();
+		var lineColor = '#d4d4d4';
+		for (var i = 0; i < dataSeries.length; i++) {
+			series.push({
+				'text': dataSeries[i].name, 
+				'line-color': lineColor, 
+				'values': dataSeries[i].data, 
+				'marker': {
+					'background-color': lineColor,
+		            'border-color': lineColor
+		        }
+		    });
+		}
+		return series;
+	}
+
 	zingchart.renderMultiYAxises = function(divId) {
 		var chartData = {
 			"background-color":"white",
@@ -83,9 +100,9 @@
 		});
 	};
 
-	zingchart.renderLine = function(divId, xAxis, dataSeries) {
+	function renderLine(divId, dataSeries) {
 		var chartData = {
-		    "background-color":"white",
+		    "background-color":"none",
 		    "type":"line",
 		    "title":{
 		        "text":"Monthly Average Temperature",
@@ -111,12 +128,6 @@
 		        },
 		        "toggle-action":"remove"
 		    },
-			"scale-x":{
-		        "values":xAxis
-			},
-			"scale-x-2":{
-		        "values":xAxis
-			},
 			"scale-y":{
 		        "line-color":"#333"
 			},
@@ -164,9 +175,132 @@
 
 		zingchart.render({
 		    id: divId,
-		    height: 400,
+		    height: 550,
 		    width: '100%',
 		    data: chartData
 		});
+	};
+
+	function renderScopeControl(targetId, dataSeries) {
+		var chartData = {
+		    "background-color":"none",
+		    "type":"line",
+		    "title":{
+		        "height": 0
+		    },
+		    "subtitle":{
+		        "height": 0
+		    },
+		    "scale-x": {
+		    	"visible": false
+		    },
+			"scale-y":{
+		        "visible": false
+			},
+			"tooltip": {
+                "visible": false
+            },
+			"plot":{
+		        "line-width":3,
+		        "marker":{
+		            "size":2
+		        },
+		        "selection-mode":"multiple",
+		        "background-mode":"graph",
+		        "selected-state":{
+		            "line-width":4
+		        },
+		        "background-state":{
+		            "line-color":"#eee",
+		            "marker":{
+		                "background-color":"none"
+		            }
+		        }
+			},
+		    "plotarea":{
+		        "width":"94.9%",
+		        "height":"96%",
+		        "margin-top": 110
+		    },
+			"series":formatDataSeriesInScope([dataSeries[0]])
+		};
+
+		zingchart.render({
+		    id: targetId + 'Scope',
+		    height: 230,
+		    width: '100%',
+		    data: chartData
+		});
+
+		maskScope(targetId, dataSeries[0].data.length, dataSeries);
+	}
+
+	function extractInRange(array, fromIndex, toIndex) {
+		var series = new Array();
+		for (var i = fromIndex; i <= toIndex; i++) {
+			series.push(array[i]);
+		}
+		return series;
+	}
+
+	function filterDataSeries(dataSeries, fromIndex, toIndex) {
+		var series = new Array();
+		for (var i = 0; i < dataSeries.length; i++) {
+			series.push({'name':dataSeries[i].name, 'data':extractInRange(dataSeries[i].data, fromIndex, toIndex)});
+		}
+		return series;
+	}
+
+	function maskScope(targetId, dataSeriesLength, dataSeries) {
+		var scopeControl = $('#' + targetId + 'Scope');
+		var mask = $('#' + targetId + 'ScopeMask .data-scope-mask');
+		var leftButton = $('.mask-button.left');
+		var rightButton = $('.mask-button.right');
+
+		var offsetLeft = leftButton.position().left - parseInt(mask.css('marginLeft').replace('px', ''));
+		var leftButtonXAtBeginning = leftButton.position().left;
+		var rightButtonWidth = rightButton.width();
+		var rangeValue = rightButton.position().left - leftButtonXAtBeginning + Math.ceil(rightButtonWidth / 2.0);
+
+		$('.mask-button').draggable({ 
+			axis: "x",
+			containment: "parent",
+			scroll: false,
+			drag: function(event) {
+				var targetElem = $(event.target);
+				var x = targetElem.position().left;
+				var oldMarginLeft = parseInt(mask.css('marginLeft').replace('px', ''));
+
+				var x1 = leftButtonXAtBeginning;
+
+				if (targetElem.hasClass('left')) {
+					mask.css({'margin-left': (x - offsetLeft) + 'px'});
+					var newMarginLeft = parseInt(mask.css('marginLeft').replace('px', ''));
+					mask.width(mask.width() - (newMarginLeft - oldMarginLeft));
+				} else {
+					var buttonMarginRight = parseInt(targetElem.css('marginRight').replace('px', ''));
+					var buttonWidth = targetElem.width();
+					mask.width(x - buttonWidth - oldMarginLeft - 5);
+				}
+			},
+			stop: function() {
+				var x0 = leftButton.position().left - leftButtonXAtBeginning;
+				var x1 = rightButton.position().left - leftButtonXAtBeginning + Math.ceil(rightButtonWidth / 2.0);
+				var startIndex = Math.floor(dataSeriesLength * 1.0 * x0 / rangeValue);
+				var endIndex = Math.ceil(dataSeriesLength * 1.0 * x1 / rangeValue);
+
+				var filteredSeries = filterDataSeries(dataSeries, startIndex, endIndex);
+				refreshChartInRange(targetId, filteredSeries);
+			}
+		});
+	}
+
+	function refreshChartInRange(id, dataSeries) {
+		zingchart.exec(id, 'setseriesdata', {'data': formatDataSeries(dataSeries)});
+	}
+
+	zingchart.renderLineWithinScope = function(divId, dataSeries) {
+		renderLine(divId, dataSeries);
+		renderScopeControl(divId, dataSeries);
 	};
 })(window.zingchart = window.zingchart || {});
