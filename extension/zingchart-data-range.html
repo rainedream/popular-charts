@@ -39,7 +39,7 @@
 			{
 				height: 92px;
 				margin: -129px 0 0 49px;
-				width: 1713px;
+				width: 1695px;
 			}
 
 			.data-scope-mask
@@ -84,9 +84,13 @@
 			<div class="data-scope-mask"></div>
 		</div>
 
+		<label for="zingchartContainer2" class="chart-name">ZingChart: Data Range Selection (Native)</label>
+		<div id='zingchartContainer2'></div>
+
 		<script>
 			$(document).ready(function() {
 				var years = 25;
+				var xAxis = monthMark.generate(2014, years);
 				var dataSeries = [
 						{
 				            name: 'Tokyo',
@@ -103,6 +107,7 @@
 				        }];
 
 				zingchart.renderLineWithinScope('zingchartContainer', dataSeries);
+				zingchart.renderLineWithinScopeInNativeMode('zingchartContainer2', xAxis, dataSeries);
 			});
 		</script>
 	</body>
